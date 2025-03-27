@@ -9,6 +9,7 @@
 //import org.mockito.Mock;
 //import org.mockito.Mockito;
 //import org.mockito.MockitoAnnotations;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 //
 //import java.sql.*;
 //import java.util.List;
@@ -30,6 +31,9 @@
 //    @Mock
 //    private ResultSet resultSet;
 //
+//    @Mock
+//    private PasswordEncoder passwordEncoder;
+//
 //    @InjectMocks
 //    private UserRepository userRepository;
 //
@@ -41,6 +45,7 @@
 //        when(statement.executeQuery(any())).thenReturn(resultSet);
 //        when(connection.prepareStatement(any())).thenReturn(preparedStatement);
 //        when(preparedStatement.executeQuery(any())).thenReturn(resultSet);
+//        when(preparedStatement.executeQuery()).thenReturn(resultSet);
 //
 //        mockStatic(DriverManager.class);
 //        when(DriverManager.getConnection(any(String.class), any(String.class), any(String.class)))
@@ -103,6 +108,7 @@
 //    void testCreateUser() throws SQLException {
 //        User user = new User(1L, "testUser", "test@example.com", "encryptedPassword");
 //
+//        when(passwordEncoder.encode(user.getPassword())).thenReturn("encryptedPassword");
 //        when(preparedStatement.executeUpdate()).thenReturn(1);
 //
 //        userRepository.createUser(user);
@@ -116,6 +122,7 @@
 //        Long userId = 1L;
 //        User user = new User(userId, "updatedUser", "updated@example.com", "updatedPassword");
 //
+//        when(passwordEncoder.encode(user.getPassword())).thenReturn("encryptedPassword");
 //        when(preparedStatement.executeUpdate()).thenReturn(1);
 //
 //        userRepository.updateUser(userId, user);
